@@ -1,0 +1,45 @@
+package com.simplesurance.dogbreed.di
+
+import com.simplesurance.dogbreed.data.remote.api.ApiConfig.BASE_URL
+import com.simplesurance.dogbreed.data.remote.service.DogBreedService
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object NetworkModule {
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient, url: String): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun createClient(): OkHttpClient {
+        val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
+        val loggingInterceptor =
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
+        okHttpClientBuilder.addInterceptor(loggingInterceptor)
+
+        return okHttpClientBuilder.build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideDogBreedsService(retrofit: Retrofit): DogBreedService {
+        return retrofit.create(DogBreedService::class.java)
+    }
+}
