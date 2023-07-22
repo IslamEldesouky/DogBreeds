@@ -8,6 +8,5 @@ import androidx.room.PrimaryKey
 data class DogBreed(
     @PrimaryKey(autoGenerate = false) val name: String,
     @ColumnInfo(name = "sub_breeds")  val subBreeds: String,
-    @ColumnInfo(name = "image_url") val imageUrl: String,
     @ColumnInfo(name = "is_favourite") val isFavourite: Boolean
 )

@@ -11,14 +11,14 @@ class LocalDataSourceImpl(private val dao: DogBreedDao) : LocalDataSource {
         return dao.getDogBreeds()
     }
 
-    override suspend fun storeDogBreedListInDb(dogBreeds: List<DogBreed>) {
+    override suspend fun storeDogBreedListInDb(dogBreeds: List<DogBreed>?) {
         dao.insertAllDogBreeds(dogBreeds)
     }
 
     override suspend fun getDogBreedImages(breedName: String): Resource<List<String>> {
         val dogBreedImageList = dao.getDogBreedImages(breedName)
         return if (dogBreedImageList.isEmpty()) {
-            Resource.DataError(errorCode = 2)
+            Resource.empty()
         } else {
             val converter = Converters()
             Resource.Success(converter.fromString(dogBreedImageList[0]))

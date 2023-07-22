@@ -1,9 +1,18 @@
 package com.simplesurance.dogbreed.data
 
-sealed class Resource<T>(
-    val data: T? = null, val errorCode: Int? = null
-) {
-    class Success<T>(data: T? = null) : Resource<T>(data)
-    class Loading<T> : Resource<T>()
-    class DataError<T>(data: T? = null, errorCode: Int) : Resource<T>(data, errorCode)
+sealed class Resource<out T> {
+    object Empty : Resource<Nothing>() //empty state returns nothing
+
+    object Loading : Resource<Nothing>() //loading state returns nothing
+
+    data class Success<out T>(val value: T) : Resource<T>() // success state returns an object/Model
+
+    class Failure(val exception: Throwable) : Resource<Nothing>() // failure state takes exception
+
+    companion object {
+
+        fun <T> empty(): Resource<T> = Empty
+
+        fun <T> success(data: T): Resource<T> = Success(data)
+    }
 }

@@ -9,8 +9,15 @@ import com.simplesurance.dogbreed.domain.repository.DogBreedRepository
 class DogBreedRepositoryImpl(
     private val remoteDataSource: RemoteDataSource, private val localDataSource: LocalDataSource
 ) : DogBreedRepository {
-    override suspend fun getDogBreeds(): List<DogBreed> {
-        return getDogBreedFromDB()
+    override suspend fun getDogBreeds(): List<DogBreed>? {
+        return localDataSource.getDogBreeds().let {
+            if (it.isEmpty()) {
+                remoteDataSource.getDogBreeds().let { list ->
+                    localDataSource.storeDogBreedListInDb(list)
+                }
+            }
+            it
+        }
     }
 
     override suspend fun getDogBreedImages(breedName: String): Resource<List<String>> {
@@ -23,19 +30,5 @@ class DogBreedRepositoryImpl(
 
     override suspend fun getFavouriteDogBreeds(): List<DogBreed> {
         return localDataSource.getFavouriteDogBreeds()
-    }
-
-    private suspend fun getDogBreedFromDB(): List<DogBreed> {
-        var list = localDataSource.getDogBreeds()
-        if (list.isEmpty()) {
-            list = getDogBreedFromAPI()
-            localDataSource.storeDogBreedListInDb(list)
-        }
-        return list
-    }
-
-    private suspend fun getDogBreedFromAPI(): List<DogBreed> {
-        val list = remoteDataSource.getDogBreeds().data
-        return list!!
     }
 }

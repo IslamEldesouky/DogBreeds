@@ -9,14 +9,14 @@ import com.simplesurance.dogbreed.domain.model.DogBreedImages
 
 @Dao
 interface DogBreedDao {
-    @Query("SELECT * FROM dogbreed")
+    @Query("SELECT * FROM dogbreed ORDER BY name")
     suspend fun getDogBreeds(): List<DogBreed>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDogBreed(dog: DogBreed)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllDogBreeds(dogBreeds: List<DogBreed>)
+    suspend fun insertAllDogBreeds(dogBreeds: List<DogBreed>?)
 
     @Query("SELECT image_urls FROM dogbreedimages WHERE breed_name =:breedName")
     suspend fun getDogBreedImages(breedName: String): List<String>

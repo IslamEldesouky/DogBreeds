@@ -8,6 +8,7 @@ import com.simplesurance.dogbreed.domain.usecase.favouriteDogBreeds.FavouriteDog
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -16,20 +17,17 @@ import javax.inject.Singleton
 object UseCaseModule {
 
     @Provides
-    @Singleton
-    fun provideDogBreedsUseCase(repository: DogBreedRepository): UseCase {
+    fun provideDogBreedsUseCase(repository: DogBreedRepository): DogBreedUseCase {
         return DogBreedUseCase(repository)
     }
 
     @Provides
-    @Singleton
-    fun provideDogBreedsImagesUseCase(repository: DogBreedRepository): com.simplesurance.dogbreed.domain.usecase.dogBreedImages.UseCase {
+    fun provideDogBreedsImagesUseCase(repository: DogBreedRepository): DogBreedImagesUseCase {
         return DogBreedImagesUseCase(repository)
     }
 
     @Provides
-    @Singleton
-    fun provideFavouriteDogBreedsUseCase(repository: DogBreedRepository): com.simplesurance.dogbreed.domain.usecase.favouriteDogBreeds.UseCase {
+    fun provideFavouriteDogBreedsUseCase(repository: DogBreedRepository): FavouriteDogBreedUseCase {
         return FavouriteDogBreedUseCase(repository)
     }
 }
