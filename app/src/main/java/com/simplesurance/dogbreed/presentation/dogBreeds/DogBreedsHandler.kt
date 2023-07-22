@@ -1,4 +1,6 @@
 package com.simplesurance.dogbreed.presentation.dogBreeds
 
-class DogBreedsHandler {
+interface DogBreedsHandler {
+    fun addOrRemoveFavourite()
+    fun viewDetails()
 }

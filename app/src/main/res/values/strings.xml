@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DogBreeds</string>
+    <string name="view">View</string>
+    <string name="has_s_sub_breeds">Has %s sub breeds</string>
+    <string name="dog_breeds">Dog Breeds</string>
+    <string name="sub_breeds">sub breeds</string>
 </resources>

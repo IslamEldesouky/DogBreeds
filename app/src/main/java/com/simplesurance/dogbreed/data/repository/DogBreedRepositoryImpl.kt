@@ -10,14 +10,14 @@ class DogBreedRepositoryImpl(
     private val remoteDataSource: RemoteDataSource, private val localDataSource: LocalDataSource
 ) : DogBreedRepository {
     override suspend fun getDogBreeds(): List<DogBreed>? {
-        return localDataSource.getDogBreeds().let {
-            if (it.isEmpty()) {
-                remoteDataSource.getDogBreeds().let { list ->
-                    localDataSource.storeDogBreedListInDb(list)
-                }
+       val list = localDataSource.getDogBreeds()
+        if(list.isEmpty()){
+           return remoteDataSource.getDogBreeds().let {
+                localDataSource.storeDogBreedListInDb(it)
+               it
             }
-            it
         }
+        return list
     }
 
     override suspend fun getDogBreedImages(breedName: String): Resource<List<String>> {
