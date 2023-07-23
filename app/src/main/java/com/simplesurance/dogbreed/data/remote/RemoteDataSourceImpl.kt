@@ -82,27 +82,4 @@ class RemoteDataSourceImpl(private val dogBreedService: DogBreedService) : Remot
             return emptyList()
         }
     }
-
-//    private suspend fun prepareDogsBreedListWithImage(
-//        scope: CoroutineScope,
-//        dogBreedNameWithSubBreedList: List<DogBreedWithSubBreed>,
-//        dogBreedList: MutableList<DogBreed>,
-//    ) {
-//        var iterator = 0
-//        scope.asyncAll(dogBreedNameWithSubBreedList) { dogBreedService.fetchDogBreeds() }
-//            .awaitAll() //Awaits for completion of given deferred values without blocking a thread and
-//            // resumes normally with the list of values when all deferred computations are complete.
-//            .forEach { breedImageResponse ->
-//                breedImageResponse.body()?.let { breedImage ->
-//                    dogBreedList.add(
-//                        DogBreed(
-//                            dogBreedNameWithSubBreedList[iterator].name,
-//                            dogBreedNameWithSubBreedList[iterator].subBreeds,
-//                            false
-//                        )
-//                    )
-//                }
-//                iterator++
-//            }
-//    }
 }

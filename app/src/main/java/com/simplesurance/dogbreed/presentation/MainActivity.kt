@@ -1,7 +1,8 @@
-package com.simplesurance.dogbreed
+package com.simplesurance.dogbreed.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.simplesurance.dogbreed.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

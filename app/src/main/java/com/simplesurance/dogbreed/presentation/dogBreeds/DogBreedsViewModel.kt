@@ -25,19 +25,22 @@ class DogBreedsViewModel @Inject constructor(
     // initializing a StateFlow which will be used by the fragment if any change occurs
     val dogBreedFlow: StateFlow<Resource<List<DogBreed>?>> = _dogBreedFlow
 
+    var dogList : List<DogBreed> = mutableListOf<DogBreed>() // to use in testing
+
     fun getDogBreeds() {
         viewModelScope.launch {
             try {
                 _dogBreedFlow.value = Resource.Loading
                 val result = dogBreedUseCase.getDogBreeds()
-                Log.d("RESULTVIEWMODEL", result?.size.toString())
+                if (result != null) {
+                    dogList = result
+                }
                 if (!result.isNullOrEmpty()) {
                     _dogBreedFlow.value = Resource.Success(result)
                 } else {
                     _dogBreedFlow.value = Resource.empty()
                 }
             } catch (e: Exception) {
-                Log.d("RESULT", e.localizedMessage.toString())
                 _dogBreedFlow.value = Resource.Failure(e)
             }
         }

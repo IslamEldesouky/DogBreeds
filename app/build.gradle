@@ -70,6 +70,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
+    testImplementation "org.mockito:mockito-inline:3.11.2"
 
     //Room Persistence
     implementation "androidx.room:room-ktx:2.5.2"
@@ -80,4 +81,23 @@ dependencies {
 
     // dependency for loading image from url
     implementation 'com.github.bumptech.glide:glide:4.13.0'
+
+    // Mockk
+    testImplementation "io.mockk:mockk:1.12.5"
+
+    // Coroutines testing
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+    testImplementation "androidx.arch.core:core-testing:2.2.0"
+
+    // Kotest
+    testImplementation "io.kotest:kotest-assertions-core:5.4.2"
+    testApi "org.jetbrains.kotlin:kotlin-test"
+
+    // Junit
+    testImplementation "junit:junit:4.13.2"
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
+
+    // Espresso
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
+    androidTestImplementation "com.google.truth:truth:1.1"
 }
