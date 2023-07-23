@@ -39,6 +39,7 @@ class DogBreedsFragment : Fragment(), DogBreedsAdapter.ItemSelected, DogBreedsHa
     ): View? {
         binding = FragmentDogBreedsBinding.inflate(inflater)
         adapter = DogBreedsAdapter(this@DogBreedsFragment)
+        initRecyclerView()
         binding.handler = this
         return binding.root
     }
@@ -65,10 +66,12 @@ class DogBreedsFragment : Fragment(), DogBreedsAdapter.ItemSelected, DogBreedsHa
         }
     }
 
-    private fun initView(dogBreedList: List<DogBreed>?){
-        hideLoadingDialog(binding)
+    private fun initRecyclerView(){
         binding.dogRv.layoutManager = LinearLayoutManager(this.requireContext())
         binding.dogRv.adapter = adapter
+    }
+    private fun initView(dogBreedList: List<DogBreed>?){
+        hideLoadingDialog(binding)
         adapter.submitList(dogBreedList)
     }
 

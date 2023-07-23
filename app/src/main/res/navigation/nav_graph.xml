@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/dogBreedsFragment"
         android:name="com.simplesurance.dogbreed.presentation.dogBreeds.DogBreedsFragment"
-        android:label="DogBreedsFragment" >
+        android:label="DogBreedsFragment">
         <action
             android:id="@+id/action_dogBreedsFragment_to_dogBreedDetailsFragment"
             app:destination="@id/dogBreedDetailsFragment" />
@@ -33,6 +33,8 @@
         android:label="SplashFragment" >
         <action
             android:id="@+id/action_splashFragment_to_dogBreedsFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"
             app:destination="@id/dogBreedsFragment" />
     </fragment>
 </navigation>
