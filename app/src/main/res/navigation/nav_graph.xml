@@ -7,5 +7,24 @@
     <fragment
         android:id="@+id/dogBreedsFragment"
         android:name="com.simplesurance.dogbreed.presentation.dogBreeds.DogBreedsFragment"
-        android:label="DogBreedsFragment" />
+        android:label="DogBreedsFragment" >
+        <action
+            android:id="@+id/action_dogBreedsFragment_to_dogBreedDetailsFragment"
+            app:destination="@id/dogBreedDetailsFragment" />
+        <action
+            android:id="@+id/action_dogBreedsFragment_to_favouriteDogBreedsFragment"
+            app:destination="@id/favouriteDogBreedsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dogBreedDetailsFragment"
+        android:name="com.simplesurance.dogbreed.presentation.dogBreedsDetails.DogBreedDetailsFragment"
+        android:label="DogBreedDetailsFragment" />
+    <fragment
+        android:id="@+id/favouriteDogBreedsFragment"
+        android:name="com.simplesurance.dogbreed.presentation.favouriteDogBreeds.FavouriteDogBreedsFragment"
+        android:label="FavouriteDogBreedsFragment" >
+        <action
+            android:id="@+id/action_favouriteDogBreedsFragment_to_dogBreedDetailsFragment"
+            app:destination="@id/dogBreedDetailsFragment" />
+    </fragment>
 </navigation>

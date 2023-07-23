@@ -5,7 +5,7 @@ import com.simplesurance.dogbreed.domain.repository.DogBreedRepository
 
 class DogBreedImagesUseCase(private val repository: DogBreedRepository) : UseCase {
 
-    override suspend fun getDogBreedImages(breed: String): Resource<List<String>> {
+    override suspend fun getDogBreedImages(breed: String): List<String> {
         return repository.getDogBreedImages(breed)
     }
 }

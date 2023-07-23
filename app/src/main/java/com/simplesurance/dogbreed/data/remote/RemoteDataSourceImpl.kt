@@ -62,7 +62,7 @@ class RemoteDataSourceImpl(private val dogBreedService: DogBreedService) : Remot
         }
     }
 
-    override suspend fun getDogBreedImages(breedName: String): Resource<List<String>> {
+    override suspend fun getDogBreedImages(breedName: String): List<String> {
         try {
             val res = dogBreedService.fetchDogBreedImages(breedName)
 
@@ -70,16 +70,16 @@ class RemoteDataSourceImpl(private val dogBreedService: DogBreedService) : Remot
                 true -> {
                     res.body()?.let { body ->
                         if (body.status == DogBreedResponse.SUCCESS_STATUS) {
-                            return Resource.Success(body.message)
-                        } else return Resource.empty()
-                    } ?: return Resource.empty()
+                            return body.message
+                        } else return emptyList()
+                    } ?: return emptyList()
                 }
 
-                false -> return Resource.empty()
+                false -> return emptyList()
             }
         } catch (e: Exception) {
             Log.e("NETWORK_API_ERROR", "Cannot get dog breed images ${e.hashCode()}")
-            return Resource.Failure(e)
+            return emptyList()
         }
     }
 

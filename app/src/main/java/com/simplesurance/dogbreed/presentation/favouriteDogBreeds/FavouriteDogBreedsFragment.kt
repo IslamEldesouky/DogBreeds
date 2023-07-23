@@ -1,8 +1,7 @@
-package com.simplesurance.dogbreed.presentation.dogBreeds
+package com.simplesurance.dogbreed.presentation.favouriteDogBreeds
 
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,19 +16,21 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.simplesurance.dogbreed.R
 import com.simplesurance.dogbreed.data.Resource
-import com.simplesurance.dogbreed.databinding.FragmentDogBreedsBinding
+import com.simplesurance.dogbreed.databinding.FragmentFavouriteDogBreedsBinding
 import com.simplesurance.dogbreed.domain.model.DogBreed
-import com.simplesurance.dogbreed.util.extensions.hideLoadingDialog
-import com.simplesurance.dogbreed.util.extensions.showLoadingDialog
+import com.simplesurance.dogbreed.presentation.dogBreeds.DogBreedsViewModel
+import com.simplesurance.dogbreed.presentation.dogBreeds.FavouriteDogBreedsViewModel
+import com.simplesurance.dogbreed.util.extensions.hideLoadingFavouriteDialog
+import com.simplesurance.dogbreed.util.extensions.showLoadingFavouriteDialog
 import com.stc.newsapp.presentation.home.adapter.DogBreedsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class DogBreedsFragment : Fragment(), DogBreedsAdapter.ItemSelected, DogBreedsHandler {
+class FavouriteDogBreedsFragment : Fragment(), DogBreedsAdapter.ItemSelected {
 
-    private val viewModel: DogBreedsViewModel by viewModels()
-    lateinit var binding: FragmentDogBreedsBinding
+    private val viewModel: FavouriteDogBreedsViewModel by viewModels()
+    lateinit var binding: FragmentFavouriteDogBreedsBinding
     lateinit var loadingDialog: Dialog
     lateinit var adapter: DogBreedsAdapter
 
@@ -38,9 +39,8 @@ class DogBreedsFragment : Fragment(), DogBreedsAdapter.ItemSelected, DogBreedsHa
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDogBreedsBinding.inflate(inflater)
-        adapter = DogBreedsAdapter(this@DogBreedsFragment)
-        binding.handler = this
+        binding = FragmentFavouriteDogBreedsBinding.inflate(inflater)
+        adapter = DogBreedsAdapter(this@FavouriteDogBreedsFragment)
         return binding.root
     }
 
@@ -54,7 +54,7 @@ class DogBreedsFragment : Fragment(), DogBreedsAdapter.ItemSelected, DogBreedsHa
                     when (it) {
                         is Resource.Success -> initView(it.value)
                         is Resource.Loading -> {
-                            showLoadingDialog(binding)
+                            showLoadingFavouriteDialog(binding)
                         }
 
                         is Resource.Empty -> showEmptyView()
@@ -64,30 +64,35 @@ class DogBreedsFragment : Fragment(), DogBreedsAdapter.ItemSelected, DogBreedsHa
                 }
             }
         }
+        binding.ivBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
-    private fun initView(dogBreedList: List<DogBreed>?){
-        hideLoadingDialog(binding)
+    private fun initView(dogBreedList: List<DogBreed>?) {
+        hideLoadingFavouriteDialog(binding)
         binding.dogRv.layoutManager = LinearLayoutManager(this.requireContext())
         binding.dogRv.adapter = adapter
         adapter.submitList(dogBreedList)
     }
 
     private fun showEmptyView() {
-        hideLoadingDialog(binding)
+        hideLoadingFavouriteDialog(binding)
         Toast.makeText(
-            this@DogBreedsFragment.requireContext(),
-            getString(R.string.dog_breed_empty_data),
+            this@FavouriteDogBreedsFragment.requireContext(),
+            getString(R.string.no_favourites_added),
             Toast.LENGTH_SHORT
-        ).show()    }
+        ).show()
+    }
 
     private fun showErrorView(e: Throwable) {
-        hideLoadingDialog(binding)
+        hideLoadingFavouriteDialog(binding)
         Toast.makeText(
-            this@DogBreedsFragment.requireContext(),
+            this@FavouriteDogBreedsFragment.requireContext(),
             getString(R.string.error_message),
             Toast.LENGTH_SHORT
-        ).show()    }
+        ).show()
+    }
 
     override fun itemSelected(item: DogBreed?) {
         val bundle = bundleOf(
@@ -96,12 +101,8 @@ class DogBreedsFragment : Fragment(), DogBreedsAdapter.ItemSelected, DogBreedsHa
             "is_favourite" to item?.isFavourite
         )
         findNavController().navigate(
-            R.id.action_dogBreedsFragment_to_dogBreedDetailsFragment,
+            R.id.action_favouriteDogBreedsFragment_to_dogBreedDetailsFragment,
             bundle
         )
-    }
-
-    override fun showFavourite() {
-        findNavController().navigate(R.id.action_dogBreedsFragment_to_favouriteDogBreedsFragment)
     }
 }

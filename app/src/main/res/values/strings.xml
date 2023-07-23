@@ -4,4 +4,14 @@
     <string name="has_s_sub_breeds">Has %s sub breeds</string>
     <string name="dog_breeds">Dog Breeds</string>
     <string name="sub_breeds">sub breeds</string>
+    <string name="sub_breeds_text">Sub Breeds</string>
+    <string name="details">Details</string>
+    <string name="details_empty_images_message">No images fetched check your connection</string>
+    <string name="no_sub_breeds">No sub breeds</string>
+    <string name="favourite_dog_breeds">Favourite Dog breeds</string>
+    <string name="no_favourites_added">No favourites added</string>
+    <string name="error_message">Something went wrong, check your connection or try again later</string>
+    <string name="show_favourite_breeds">Show favourite breeds</string>
+    <string name="show_favourite_breeds_"><![CDATA[Show favourite breeds ->]]></string>
+    <string name="dog_breed_empty_data">No data fetched, please check your connection</string>
 </resources>

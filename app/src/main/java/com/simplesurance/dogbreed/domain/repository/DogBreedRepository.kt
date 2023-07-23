@@ -5,7 +5,7 @@ import com.simplesurance.dogbreed.domain.model.DogBreed
 
 interface DogBreedRepository {
     suspend fun getDogBreeds(): List<DogBreed>?
-    suspend fun getDogBreedImages(breedName: String): Resource<List<String>>
+    suspend fun getDogBreedImages(breedName: String): List<String>
     suspend fun updateDogBreeds(name: String, isFavourite: Boolean)
     suspend fun getFavouriteDogBreeds(): List<DogBreed>
 }

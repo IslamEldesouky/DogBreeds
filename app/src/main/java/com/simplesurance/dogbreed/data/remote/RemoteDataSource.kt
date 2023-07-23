@@ -5,5 +5,5 @@ import com.simplesurance.dogbreed.domain.model.DogBreed
 
 interface RemoteDataSource {
     suspend fun getDogBreeds(): List<DogBreed>
-    suspend fun getDogBreedImages(breedName: String): Resource<List<String>>
+    suspend fun getDogBreedImages(breedName: String): List<String>
 }

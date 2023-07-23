@@ -14,8 +14,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DogBreedsViewModel @Inject constructor(
-    private val dogBreedUseCase: DogBreedUseCase,
+class FavouriteDogBreedsViewModel @Inject constructor(
+    private val favouriteDogBreedUseCase: FavouriteDogBreedUseCase,
 ) :
     ViewModel() {
 
@@ -29,7 +29,7 @@ class DogBreedsViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _dogBreedFlow.value = Resource.Loading
-                val result = dogBreedUseCase.getDogBreeds()
+                val result = favouriteDogBreedUseCase.getFavouriteDogBreeds()
                 Log.d("RESULTVIEWMODEL", result?.size.toString())
                 if (!result.isNullOrEmpty()) {
                     _dogBreedFlow.value = Resource.Success(result)

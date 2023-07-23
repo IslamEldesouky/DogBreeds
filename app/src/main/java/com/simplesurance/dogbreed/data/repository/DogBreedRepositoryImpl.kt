@@ -4,6 +4,7 @@ import com.simplesurance.dogbreed.data.Resource
 import com.simplesurance.dogbreed.data.local.LocalDataSource
 import com.simplesurance.dogbreed.data.remote.RemoteDataSource
 import com.simplesurance.dogbreed.domain.model.DogBreed
+import com.simplesurance.dogbreed.domain.model.DogBreedImages
 import com.simplesurance.dogbreed.domain.repository.DogBreedRepository
 
 class DogBreedRepositoryImpl(
@@ -20,8 +21,15 @@ class DogBreedRepositoryImpl(
         return list
     }
 
-    override suspend fun getDogBreedImages(breedName: String): Resource<List<String>> {
-        return remoteDataSource.getDogBreedImages(breedName)
+    override suspend fun getDogBreedImages(breedName: String): List<String> {
+        val list = localDataSource.getDogBreedImages(breedName)
+        if(list.isEmpty()){
+            return remoteDataSource.getDogBreedImages(breedName).let {
+                localDataSource.storeDogBreedImageListInDb(DogBreedImages(it,breedName))
+                it
+            }
+        }
+        return list
     }
 
     override suspend fun updateDogBreeds(name: String, isFavourite: Boolean) {
