@@ -1,7 +1,6 @@
 package com.simplesurance.dogbreed.util
 
 import com.simplesurance.dogbreed.data.local.db.Constants.COMMA
-import com.simplesurance.dogbreed.data.remote.dto.DogBreedWithSubBreed
 
 fun getSubBreedsCount(subBreeds : String) : String{
     var count = "0"

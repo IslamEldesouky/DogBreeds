@@ -1,6 +1,5 @@
 package com.simplesurance.dogbreed.data.local
 
-import com.simplesurance.dogbreed.data.Resource
 import com.simplesurance.dogbreed.data.local.db.Converters
 import com.simplesurance.dogbreed.data.local.db.DogBreedDao
 import com.simplesurance.dogbreed.domain.model.DogBreed

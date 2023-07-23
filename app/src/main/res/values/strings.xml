@@ -14,4 +14,5 @@
     <string name="show_favourite_breeds">Show favourite breeds</string>
     <string name="show_favourite_breeds_"><![CDATA[Show favourite breeds ->]]></string>
     <string name="dog_breed_empty_data">No data fetched, please check your connection</string>
+    <string name="dog_breeds_text">Dog breeds</string>
 </resources>

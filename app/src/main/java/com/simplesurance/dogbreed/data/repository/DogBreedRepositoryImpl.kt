@@ -1,6 +1,5 @@
 package com.simplesurance.dogbreed.data.repository
 
-import com.simplesurance.dogbreed.data.Resource
 import com.simplesurance.dogbreed.data.local.LocalDataSource
 import com.simplesurance.dogbreed.data.remote.RemoteDataSource
 import com.simplesurance.dogbreed.domain.model.DogBreed

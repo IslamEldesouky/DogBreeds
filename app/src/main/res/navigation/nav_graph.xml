@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dogBreedsFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/dogBreedsFragment"
@@ -26,5 +26,13 @@
         <action
             android:id="@+id/action_favouriteDogBreedsFragment_to_dogBreedDetailsFragment"
             app:destination="@id/dogBreedDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_dogBreedsFragment"
+            app:destination="@id/dogBreedsFragment" />
     </fragment>
 </navigation>

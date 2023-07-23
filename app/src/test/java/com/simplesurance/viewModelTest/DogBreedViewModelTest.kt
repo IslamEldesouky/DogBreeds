@@ -1,18 +1,13 @@
 package com.simplesurance.viewModelTest
 
 import com.simplesurance.dogbreed.domain.model.DogBreed
-import com.simplesurance.dogbreed.domain.usecase.dogBreeds.DogBreedUseCase
+import com.simplesurance.dogbreed.domain.usecase.dogBreeds.DogBreedUseCaseImpl
 import com.simplesurance.dogbreed.presentation.dogBreeds.DogBreedsViewModel
 import com.simplesurance.util.CoroutineTestRule
-import io.mockk.mockk
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.runTest
-import kotlinx.coroutines.withContext
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -28,7 +23,7 @@ class DogBreedViewModelTest {
 
     private lateinit var viewModel: DogBreedsViewModel
     @Mock
-    private lateinit var dogBreedsUseCase:DogBreedUseCase
+    private lateinit var dogBreedsUseCase:DogBreedUseCaseImpl
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private val testDispatcher = StandardTestDispatcher()

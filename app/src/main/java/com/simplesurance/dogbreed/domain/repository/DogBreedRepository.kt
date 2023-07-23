@@ -1,6 +1,5 @@
 package com.simplesurance.dogbreed.domain.repository
 
-import com.simplesurance.dogbreed.data.Resource
 import com.simplesurance.dogbreed.domain.model.DogBreed
 
 interface DogBreedRepository {

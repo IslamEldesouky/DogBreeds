@@ -1,9 +1,8 @@
 package com.simplesurance.viewModelTest
 
 
-import com.simplesurance.dogbreed.data.Resource
 import com.simplesurance.dogbreed.domain.model.DogBreed
-import com.simplesurance.dogbreed.domain.usecase.favouriteDogBreeds.FavouriteDogBreedUseCase
+import com.simplesurance.dogbreed.domain.usecase.favouriteDogBreeds.FavouriteDogBreedFavouriteDogBreedUseCaseImpl
 import com.simplesurance.dogbreed.presentation.dogBreeds.FavouriteDogBreedsViewModel
 import com.simplesurance.util.CoroutineTestRule
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -26,7 +25,7 @@ class FavouriteDogBreedViewModelTest {
     private lateinit var viewModel: FavouriteDogBreedsViewModel
 
     @Mock
-    private lateinit var dogBreedsUseCase: FavouriteDogBreedUseCase
+    private lateinit var dogBreedsUseCase: FavouriteDogBreedFavouriteDogBreedUseCaseImpl
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private val testDispatcher = StandardTestDispatcher()

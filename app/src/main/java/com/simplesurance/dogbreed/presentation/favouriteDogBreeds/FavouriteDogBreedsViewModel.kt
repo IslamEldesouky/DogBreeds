@@ -5,8 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.simplesurance.dogbreed.data.Resource
 import com.simplesurance.dogbreed.domain.model.DogBreed
-import com.simplesurance.dogbreed.domain.usecase.dogBreeds.DogBreedUseCase
-import com.simplesurance.dogbreed.domain.usecase.favouriteDogBreeds.FavouriteDogBreedUseCase
+import com.simplesurance.dogbreed.domain.usecase.favouriteDogBreeds.FavouriteDogBreedFavouriteDogBreedUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavouriteDogBreedsViewModel @Inject constructor(
-    private val favouriteDogBreedUseCase: FavouriteDogBreedUseCase,
+    private val favouriteDogBreedUseCaseImpl: FavouriteDogBreedFavouriteDogBreedUseCaseImpl,
 ) :
     ViewModel() {
 
@@ -31,7 +30,7 @@ class FavouriteDogBreedsViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _dogBreedFlow.value = Resource.Loading
-                val result = favouriteDogBreedUseCase.getFavouriteDogBreeds()
+                val result = favouriteDogBreedUseCaseImpl.getFavouriteDogBreeds()
                 favDogBreeds = result
                 Log.d("RESULTVIEWMODEL", result?.size.toString())
                 if (!result.isNullOrEmpty()) {

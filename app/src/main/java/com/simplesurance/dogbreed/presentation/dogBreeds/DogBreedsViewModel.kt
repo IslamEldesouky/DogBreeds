@@ -1,12 +1,10 @@
 package com.simplesurance.dogbreed.presentation.dogBreeds
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.simplesurance.dogbreed.data.Resource
 import com.simplesurance.dogbreed.domain.model.DogBreed
-import com.simplesurance.dogbreed.domain.usecase.dogBreeds.DogBreedUseCase
-import com.simplesurance.dogbreed.domain.usecase.favouriteDogBreeds.FavouriteDogBreedUseCase
+import com.simplesurance.dogbreed.domain.usecase.dogBreeds.DogBreedUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DogBreedsViewModel @Inject constructor(
-    private val dogBreedUseCase: DogBreedUseCase,
+    private val dogBreedUseCaseImpl: DogBreedUseCaseImpl,
 ) :
     ViewModel() {
 
@@ -31,7 +29,7 @@ class DogBreedsViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _dogBreedFlow.value = Resource.Loading
-                val result = dogBreedUseCase.getDogBreeds()
+                val result = dogBreedUseCaseImpl.getDogBreeds()
                 if (result != null) {
                     dogList = result
                 }

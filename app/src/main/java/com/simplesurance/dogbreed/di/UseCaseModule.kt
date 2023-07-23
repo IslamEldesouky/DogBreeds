@@ -1,33 +1,30 @@
 package com.simplesurance.dogbreed.di
 
 import com.simplesurance.dogbreed.domain.repository.DogBreedRepository
-import com.simplesurance.dogbreed.domain.usecase.dogBreedImages.DogBreedImagesUseCase
-import com.simplesurance.dogbreed.domain.usecase.dogBreeds.DogBreedUseCase
-import com.simplesurance.dogbreed.domain.usecase.dogBreeds.UseCase
-import com.simplesurance.dogbreed.domain.usecase.favouriteDogBreeds.FavouriteDogBreedUseCase
+import com.simplesurance.dogbreed.domain.usecase.dogBreedImages.DogBreedImagesUseCaseImpl
+import com.simplesurance.dogbreed.domain.usecase.dogBreeds.DogBreedUseCaseImpl
+import com.simplesurance.dogbreed.domain.usecase.favouriteDogBreeds.FavouriteDogBreedFavouriteDogBreedUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object UseCaseModule {
 
     @Provides
-    fun provideDogBreedsUseCase(repository: DogBreedRepository): DogBreedUseCase {
-        return DogBreedUseCase(repository)
+    fun provideDogBreedsUseCase(repository: DogBreedRepository): DogBreedUseCaseImpl {
+        return DogBreedUseCaseImpl(repository)
     }
 
     @Provides
-    fun provideDogBreedsImagesUseCase(repository: DogBreedRepository): DogBreedImagesUseCase {
-        return DogBreedImagesUseCase(repository)
+    fun provideDogBreedsImagesUseCase(repository: DogBreedRepository): DogBreedImagesUseCaseImpl {
+        return DogBreedImagesUseCaseImpl(repository)
     }
 
     @Provides
-    fun provideFavouriteDogBreedsUseCase(repository: DogBreedRepository): FavouriteDogBreedUseCase {
-        return FavouriteDogBreedUseCase(repository)
+    fun provideFavouriteDogBreedsUseCase(repository: DogBreedRepository): FavouriteDogBreedFavouriteDogBreedUseCaseImpl {
+        return FavouriteDogBreedFavouriteDogBreedUseCaseImpl(repository)
     }
 }

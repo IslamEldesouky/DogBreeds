@@ -18,7 +18,6 @@ import com.simplesurance.dogbreed.R
 import com.simplesurance.dogbreed.data.Resource
 import com.simplesurance.dogbreed.databinding.FragmentFavouriteDogBreedsBinding
 import com.simplesurance.dogbreed.domain.model.DogBreed
-import com.simplesurance.dogbreed.presentation.dogBreeds.DogBreedsViewModel
 import com.simplesurance.dogbreed.presentation.dogBreeds.FavouriteDogBreedsViewModel
 import com.simplesurance.dogbreed.util.extensions.hideLoadingFavouriteDialog
 import com.simplesurance.dogbreed.util.extensions.showLoadingFavouriteDialog

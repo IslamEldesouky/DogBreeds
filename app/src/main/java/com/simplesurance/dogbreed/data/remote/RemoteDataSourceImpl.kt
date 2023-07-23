@@ -1,14 +1,12 @@
 package com.simplesurance.dogbreed.data.remote
 
 import android.util.Log
-import com.simplesurance.dogbreed.data.Resource
 import com.simplesurance.dogbreed.data.local.db.Constants.COMMA
 import com.simplesurance.dogbreed.data.remote.dto.DogBreedResponse
 import com.simplesurance.dogbreed.data.remote.dto.DogBreedWithSubBreed
 import com.simplesurance.dogbreed.data.remote.service.DogBreedService
 import com.simplesurance.dogbreed.domain.model.DogBreed
 import com.simplesurance.dogbreed.util.extensions.asyncAll
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.withContext

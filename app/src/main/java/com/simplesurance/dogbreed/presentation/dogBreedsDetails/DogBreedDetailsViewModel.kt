@@ -4,9 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.simplesurance.dogbreed.data.Resource
-import com.simplesurance.dogbreed.domain.model.DogBreed
-import com.simplesurance.dogbreed.domain.usecase.dogBreedImages.DogBreedImagesUseCase
-import com.simplesurance.dogbreed.domain.usecase.favouriteDogBreeds.FavouriteDogBreedUseCase
+import com.simplesurance.dogbreed.domain.usecase.dogBreedImages.DogBreedImagesUseCaseImpl
+import com.simplesurance.dogbreed.domain.usecase.favouriteDogBreeds.FavouriteDogBreedFavouriteDogBreedUseCaseImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,8 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DogBreedDetailsViewModel @Inject constructor(
-    private val dogBreedImagesUseCase: DogBreedImagesUseCase,
-    private val favouriteDogBreedUseCase: FavouriteDogBreedUseCase
+    private val dogBreedImagesUseCaseImpl: DogBreedImagesUseCaseImpl,
+    private val favouriteDogBreedUseCaseImpl: FavouriteDogBreedFavouriteDogBreedUseCaseImpl
 ) : ViewModel() {
 
     private val _dogBreedImagesFlow: MutableStateFlow<Resource<List<String>?>> =
@@ -29,7 +28,7 @@ class DogBreedDetailsViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 _dogBreedImagesFlow.value = Resource.Loading
-                val result = dogBreedImagesUseCase.getDogBreedImages(breedName)
+                val result = dogBreedImagesUseCaseImpl.getDogBreedImages(breedName)
                 if (!result.isNullOrEmpty()) {
                     _dogBreedImagesFlow.value = Resource.Success(result)
                 } else {
@@ -44,7 +43,7 @@ class DogBreedDetailsViewModel @Inject constructor(
 
     fun updateDogBreed(dogName: String?, isFavourite: Boolean) {
         viewModelScope.launch {
-            favouriteDogBreedUseCase.addToFavourites(dogName.toString(), isFavourite)
+            favouriteDogBreedUseCaseImpl.addToFavourites(dogName.toString(), isFavourite)
         }
     }
 }
